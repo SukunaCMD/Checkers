@@ -13,6 +13,7 @@ case class Cell(point: Point, piece: Checker, color: Color)
 
 case class GameBoard(cells: Vector[Cell])
 
+
 object Board {
 
   def createBoard: Vector[Cell] = {
