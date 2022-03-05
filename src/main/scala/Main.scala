@@ -45,7 +45,6 @@ object Board {
   def pieceColor(row: Int): Color =
     if(row<4) Black else White
 
-
   def printBoard(board: GameBoard): Unit = {
     val rows = board.cells.grouped(8).toVector
 
@@ -54,16 +53,18 @@ object Board {
     }
   }
 
-
   def prettyPrintBox(row: Vector[Cell]): String = {
-    var test = "\n"+"----"*23+"\n"
+    var test = "\n"+"----"*20+"\n"
     for(cell <- row) {
       cell.piece match {
-        case None => test += f"| ${cell.point.y} ${cell.color} " // this is just a template for now
-        case Piece(color, Point(x, y)) => test += f"| ${color} $y "
+        case None => test += f"| ${"    "}%7s " 
+        case Piece(color, Point(x, y)) => color match{
+            case White => test += f"| ${"White"}%6s  "
+            case Black => test += f"| ${"Black"}%6s  "
+          }
       }
     }
-    test += "\n"+"----"*23
+    test += "\n"+"----"*20
     test
   }
 }
